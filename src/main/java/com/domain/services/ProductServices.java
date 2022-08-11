@@ -1,5 +1,7 @@
 package com.domain.services;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,12 @@ public class ProductServices {
     }
 
     public Product findOne(Long id) {
-        return productRepo.findById(id).get();
+        ///error handling if product = null
+        Optional<Product> product = productRepo.findById(id);
+        if (!product.isPresent()) {
+            return null;
+        }
+        return product.get();
     }
 
     public Iterable<Product> findAll() {
@@ -29,7 +36,7 @@ public class ProductServices {
         productRepo.deleteById(id);
     }
 
-    public java.util.List<Product> findByName(String name){
+    public java.util.List<Product> findByName(String name) {
         return productRepo.findByNameContains(name);
     }
 
