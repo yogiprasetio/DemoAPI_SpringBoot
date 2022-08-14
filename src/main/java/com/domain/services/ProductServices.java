@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.domain.models.entities.Product;
+import com.domain.models.entities.Supplier;
 import com.domain.models.repos.ProductRepo;
 
 @Service
@@ -38,6 +39,15 @@ public class ProductServices {
 
     public java.util.List<Product> findByName(String name) {
         return productRepo.findByNameContains(name);
+    }
+
+    public void addSuplier(Supplier supplier, Long productId){
+        Product product = findOne(productId);
+        if(product == null){
+            throw new RuntimeException("Product with ID : "+productId+" not found");
+        }
+        product.getSuppliers().add(supplier);
+        save(product);
     }
 
 }

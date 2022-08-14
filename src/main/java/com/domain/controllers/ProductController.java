@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.domain.dto.ResponseData;
 import com.domain.models.entities.Product;
+import com.domain.models.entities.Supplier;
 import com.domain.services.ProductServices;
 
 @RestController
@@ -74,5 +75,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void removeOne(@PathVariable("id") Long id){
         productService.removeOne(id);
+    }
+
+    @PostMapping("/{id}")
+    public void addSuplier(@RequestBody Supplier supplier, @PathVariable("id") Long productId){
+        productService.addSuplier(supplier, productId);
     }
 }

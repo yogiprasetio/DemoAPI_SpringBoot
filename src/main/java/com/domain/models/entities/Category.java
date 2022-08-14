@@ -19,10 +19,6 @@ public class Category implements Serializable{
     @Column(length=100, nullable=false, unique=true)
     private String name;
 
-    public Category(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
     public Long getId() {
         return id;
     }
