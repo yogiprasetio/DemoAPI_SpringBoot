@@ -14,7 +14,7 @@ public interface ProductRepo extends CrudRepository<Product, Long>{
     
     List<Product> findByNameContains(String name);
 
-    ///Custom QUERY
+    ///Custom QUERY. Using a manually defined Query
     @Query("SELECT p FROM Product p WHERE p.name = :name") ///query JPA-QL
     public Product findProductByName(@PathParam("name") String name);
 
